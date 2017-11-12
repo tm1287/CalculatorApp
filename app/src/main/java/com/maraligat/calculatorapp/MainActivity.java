@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //Method attached to the RadioButton as an onClick method.
     public void onChangeBase(View view) {
         findViewById(R.id.addBtn).callOnClick();
     }
