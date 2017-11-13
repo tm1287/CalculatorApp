@@ -12,14 +12,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-
+    int lastButtonPressed = 0;
+    int answer = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        //Add the java side of the button (variables) and add the onClick listener
-        Button addBtn = findViewById(R.id.addBtn);
-        addBtn.setOnClickListener(new View.OnClickListener() {
+        View.OnClickListener callbackListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Create variables for the EditTexts and TextView
@@ -27,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
                 EditText secondNumEditText = findViewById(R.id.secondNumEditText);
                 TextView resultTextView = findViewById(R.id.resultTextView);
                 RadioGroup rg = findViewById(R.id.radioGroup);
-
                 int button_id = rg.getCheckedRadioButtonId();
 
                 //Hide keyboard
@@ -43,34 +39,74 @@ public class MainActivity extends AppCompatActivity {
 
                 }
                 else{
-                    //Create variable les for the values passed into the EditTexts and the sum
+                    //Create variables for the values passed into the EditTexts and the sum
                     int num1 = Integer.parseInt(firstNumEditText.getText().toString());
                     int num2 = Integer.parseInt(secondNumEditText.getText().toString());
-                    int result = num1 + num2;
-
-                    //Set the text of the TextView to the sum of num1 & num2
+                    int result = 0;
+                    if (v.getId() == R.id.addBtn) {
+                        result = num1 + num2;
+                        answer = result;
+                    }
+                    else{
+                        result = num1 - num2;
+                        answer = result;
+                    }
                     switch (button_id) {
                         case R.id.decimalRadioButton:
-                            resultTextView.setText(Integer.toString(result));
+                            resultTextView.setText(Integer.toString(answer));
                             break;
                         case R.id.hexRadioButton:
-                            resultTextView.setText(Integer.toHexString(result));
+                            resultTextView.setText(Integer.toHexString(answer));
                             break;
                         case R.id.binaryRadioButton:
-                            resultTextView.setText(Integer.toBinaryString(result));
+                            resultTextView.setText(Integer.toBinaryString(answer));
                             break;
                         case -1: //button_id returns -1 if radio group is empty.
                             rg.check(R.id.decimalRadioButton);
-                            resultTextView.setText(Integer.toString(result));
+                            resultTextView.setText(Integer.toString(answer));
                             break;
                     }
+
                 }
             }
-        });
+        };
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        //Add the java side of the button (variables) and add the onClick listener
+        Button addBtn = findViewById(R.id.addBtn);
+        Button subBtn = findViewById(R.id.subBtn);
+
+
+        addBtn.setOnClickListener(callbackListener);
+
+
+        subBtn.setOnClickListener(callbackListener);
+
+
     }
 
     //Method attached to the RadioButton as an onClick method.
     public void onChangeBase(View view) {
-        findViewById(R.id.addBtn).callOnClick();
+        //Create variables for the EditTexts and TextView
+        TextView resultTextView = findViewById(R.id.resultTextView);
+        RadioGroup rg = findViewById(R.id.radioGroup);
+        int button_id = rg.getCheckedRadioButtonId();
+
+        //Set the text of the TextView to the sum of num1 & num2
+        switch (button_id) {
+            case R.id.decimalRadioButton:
+                resultTextView.setText(Integer.toString(answer));
+                break;
+            case R.id.hexRadioButton:
+                resultTextView.setText(Integer.toHexString(answer));
+                break;
+            case R.id.binaryRadioButton:
+                resultTextView.setText(Integer.toBinaryString(answer));
+                break;
+            case -1: //button_id returns -1 if radio group is empty.
+                rg.check(R.id.decimalRadioButton);
+                resultTextView.setText(Integer.toString(answer));
+                break;
+        }
     }
 }
