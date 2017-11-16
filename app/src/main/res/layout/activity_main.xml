@@ -120,6 +120,13 @@
             android:layout_weight="1"
             android:onClick="onChangeBase"
             android:text="@string/binary" />
+
+        <RadioButton
+            android:id="@+id/octalRadioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onChangeBase"
+            android:text="@string/octal" />
     </RadioGroup>
 
 </android.support.constraint.ConstraintLayout>
