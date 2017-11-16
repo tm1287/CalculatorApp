@@ -21,8 +21,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Create variables for the EditTexts and TextView
-                EditText firstNumEditText = findViewById(R.id.firstNumEditText);
-                EditText secondNumEditText = findViewById(R.id.secondNumEditText);
+                EditText firstNumEditText = (EditText) findViewById(R.id.firstNumEditText);
+                EditText secondNumEditText = (EditText) findViewById(R.id.secondNumEditText);
 
                 //Hide keyboard
                 View view = getCurrentFocus();
@@ -57,9 +57,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //Add the java side of the button (variables) and add the onClick listener
-        Button addBtn = findViewById(R.id.addBtn);
-        Button subBtn = findViewById(R.id.subBtn);
-        Button clrBtn = findViewById(R.id.clrBtn);
+        Button addBtn = (Button) findViewById(R.id.addBtn);
+        Button subBtn = (Button) findViewById(R.id.subBtn);
+        Button clrBtn = (Button) findViewById(R.id.clrBtn);
 
         addBtn.setOnClickListener(callbackListener);
 
@@ -69,10 +69,10 @@ public class MainActivity extends AppCompatActivity {
         clrBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText firstNumEditText = findViewById(R.id.firstNumEditText);
-                EditText secondNumEditText = findViewById(R.id.secondNumEditText);
-                RadioButton decimalRadioButton = findViewById((R.id.decimalRadioButton));
-                TextView resultTextView = findViewById(R.id.resultTextView);
+                EditText firstNumEditText = (EditText) findViewById(R.id.firstNumEditText);
+                EditText secondNumEditText = (EditText) findViewById(R.id.secondNumEditText);
+                RadioButton decimalRadioButton = (RadioButton) findViewById((R.id.decimalRadioButton));
+                TextView resultTextView = (TextView) findViewById(R.id.resultTextView);
 
                 //Hide keyboard
                 View view = getCurrentFocus();
@@ -81,9 +81,12 @@ public class MainActivity extends AppCompatActivity {
                     imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                 }
                 firstNumEditText.setText("");
+
                 secondNumEditText.setText("");
+                resultTextView.setText("0");
                 decimalRadioButton.setChecked(true);
-                resultTextView.setText("");
+                answer = 0;
+
 
             }
         });
@@ -96,8 +99,8 @@ public class MainActivity extends AppCompatActivity {
     }
     public void displayAnswer(){
         //Create variables for the EditTexts and TextView
-        TextView resultTextView = findViewById(R.id.resultTextView);
-        RadioGroup rg = findViewById(R.id.radioGroup);
+        TextView resultTextView = (TextView) findViewById(R.id.resultTextView);
+        RadioGroup rg = (RadioGroup) findViewById(R.id.radioGroup);
         int button_id = rg.getCheckedRadioButtonId();
 
         //Set the text of the TextView to the sum of num1 & num2
@@ -110,6 +113,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.binaryRadioButton:
                 resultTextView.setText(Integer.toBinaryString(answer));
+                break;
+            case R.id.octalRadioButton:
+                resultTextView.setText(Integer.toOctalString(answer));
                 break;
             case -1: //button_id returns -1 if radio group is empty.
                 rg.check(R.id.decimalRadioButton);
