@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     int answer = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         View.OnClickListener callbackListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,13 +59,34 @@ public class MainActivity extends AppCompatActivity {
         //Add the java side of the button (variables) and add the onClick listener
         Button addBtn = findViewById(R.id.addBtn);
         Button subBtn = findViewById(R.id.subBtn);
-
+        Button clrBtn = findViewById(R.id.clrBtn);
 
         addBtn.setOnClickListener(callbackListener);
 
 
         subBtn.setOnClickListener(callbackListener);
 
+        clrBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText firstNumEditText = findViewById(R.id.firstNumEditText);
+                EditText secondNumEditText = findViewById(R.id.secondNumEditText);
+                RadioButton decimalRadioButton = findViewById((R.id.decimalRadioButton));
+                TextView resultTextView = findViewById(R.id.resultTextView);
+
+                //Hide keyboard
+                View view = getCurrentFocus();
+                if (view != null) {
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
+                firstNumEditText.setText("");
+                secondNumEditText.setText("");
+                decimalRadioButton.setChecked(true);
+                resultTextView.setText("");
+
+            }
+        });
 
     }
 
