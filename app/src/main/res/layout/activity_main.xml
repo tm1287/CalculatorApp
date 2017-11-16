@@ -15,7 +15,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="Enter a Number"
+        android:hint="@string/enter_a_number"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +29,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="Enter a Number"
+        android:hint="@string/enter_a_number"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,42 +39,38 @@
         android:id="@+id/addBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="ADD"
+        android:layout_marginTop="24dp"
+        android:text="@string/add"
         app:layout_constraintEnd_toStartOf="@+id/subBtn"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
-        android:layout_marginLeft="8dp" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <Button
         android:id="@+id/subBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="SUBTRACT"
+        android:layout_marginTop="24dp"
+        android:text="@string/subtract"
         app:layout_constraintEnd_toStartOf="@+id/clrBtn"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/addBtn"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
-        android:layout_marginLeft="8dp" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <Button
         android:id="@+id/clrBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="8dp"
-        android:text="CLEAR"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/clear"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/subBtn"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="12dp" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <TextView
         android:id="@+id/resultTextView"
@@ -93,7 +89,7 @@
         android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="32dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
@@ -108,14 +104,14 @@
             android:layout_height="wrap_content"
             android:checked="true"
             android:onClick="onChangeBase"
-            android:text="Decimal" />
+            android:text="@string/decimal" />
 
         <RadioButton
             android:id="@+id/hexRadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onChangeBase"
-            android:text="Hexadecimal" />
+            android:text="@string/hexadecimal" />
 
         <RadioButton
             android:id="@+id/binaryRadioButton"
@@ -123,7 +119,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onChangeBase"
-            android:text="Binary" />
+            android:text="@string/binary" />
     </RadioGroup>
 
 </android.support.constraint.ConstraintLayout>
