@@ -13,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    int answer = 0;
+    Integer answer = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -83,9 +83,9 @@ public class MainActivity extends AppCompatActivity {
                 firstNumEditText.setText("");
 
                 secondNumEditText.setText("");
-                resultTextView.setText("0");
+                resultTextView.setText("");
                 decimalRadioButton.setChecked(true);
-                answer = 0;
+                answer = null;
 
 
             }
@@ -106,20 +106,45 @@ public class MainActivity extends AppCompatActivity {
         //Set the text of the TextView to the sum of num1 & num2
         switch (button_id) {
             case R.id.decimalRadioButton:
-                resultTextView.setText(Integer.toString(answer));
+                if (answer != null){
+                    resultTextView.setText(Integer.toString(answer));
+                }
+                else{
+                    resultTextView.setText("");
+                }
                 break;
             case R.id.hexRadioButton:
-                resultTextView.setText(Integer.toHexString(answer));
+                if (answer != null){
+                    resultTextView.setText(Integer.toHexString(answer));
+                }
+                else{
+                    resultTextView.setText("");
+                }
                 break;
             case R.id.binaryRadioButton:
-                resultTextView.setText(Integer.toBinaryString(answer));
+                if (answer != null){
+                    resultTextView.setText(Integer.toBinaryString(answer));
+                }
+                else{
+                    resultTextView.setText("");
+                }
                 break;
             case R.id.octalRadioButton:
-                resultTextView.setText(Integer.toOctalString(answer));
+                if (answer != null){
+                    resultTextView.setText(Integer.toOctalString(answer));
+                }
+                else{
+                    resultTextView.setText("");
+                }
                 break;
             case -1: //button_id returns -1 if radio group is empty.
                 rg.check(R.id.decimalRadioButton);
-                resultTextView.setText(Integer.toString(answer));
+                if (answer != null){
+                    resultTextView.setText(Integer.toString(answer));
+                }
+                else{
+                    resultTextView.setText("");
+                }
                 break;
         }
     }
